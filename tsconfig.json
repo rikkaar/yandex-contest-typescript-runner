@@ -5,9 +5,10 @@
     "types": ["node", "jest"],
     "module": "esnext",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
 
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
@@ -15,12 +16,11 @@
 
     "strict": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "src/extract-solution.js"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

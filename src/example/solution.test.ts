@@ -1,4 +1,4 @@
-import { solution } from "./solution";
+import { solution } from "./solution.ts";
 
 describe("solution logic", () => {
   it("adds two numbers", () => {

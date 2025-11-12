@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "solution:build": "node run/solution-build.ts",
-    "solution:test": "node run/solution-test.ts"
+    "solution:build": "node runner/solution-build.ts",
+    "solution:test": "node runner/solution-test.ts"
   },
   "repository": {
     "type": "git",
@@ -28,11 +28,7 @@
     "typescript": "^5.9.3"
   },
   "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "roots": [
-      "<rootDir>/src"
-    ]
+    "preset": "ts-jest"
   },
   "dependencies": {
     "commander": "^14.0.2"
