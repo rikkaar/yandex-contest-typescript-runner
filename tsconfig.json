@@ -2,16 +2,16 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["esnext"],
-    "types": ["node"],
+    "types": ["node", "jest"],
     "module": "esnext",
     "moduleResolution": "node",
-
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "esModuleInterop": true,
 
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
 
     "strict": true,
     "jsx": "react-jsx",

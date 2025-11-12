@@ -10,7 +10,7 @@ const program = new Command();
 program
   .name("run-solution")
   .description("Запуск TypeScript решения задачи с выбором раннера")
-  .argument("[solutionPath]", "Путь до файла с решением") // первый аргумент необязательный
+  .argument("[solutionPath]", "Путь до файла с решением")
   .option("-r, --runner <type>", "Тип раннера (file|std)", "file")
   .option("-i, --input <path>", "Путь до входного файла (для fileRunner)")
   .option("-o, --output <path>", "Путь до выходного файла (для fileRunner)")
