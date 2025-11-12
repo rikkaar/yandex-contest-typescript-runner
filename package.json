@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "solution:build": "node runner/solution-build.ts",
-    "solution:test": "node runner/solution-test.ts"
+    "solution:test": "node runner/solution-test.ts",
+    "solution:create": "node runner/create-task.ts"
   },
   "repository": {
     "type": "git",
