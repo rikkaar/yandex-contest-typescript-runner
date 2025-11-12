@@ -1,6 +1,8 @@
 # yandex-contest-typescript-runner
 
-`yandex-contest-typescript-runner` — инструмент, который приближает Developer Experience (DX) использования [Яндекс.Контеста](https://contest.yandex.ru/) к удобству платформ вроде [LeetCode](https://leetcode.com). Он позволяет легко тестировать решения и собирать JS-файлы, готовые к запуску на платформе.
+`yandex-contest-typescript-runner` — инструмент, который приближает Developer Experience (DX) использования [Яндекс.Контеста](https://contest.yandex.ru/) к удобству платформ вроде [LeetCode](https://leetcode.com). Он позволяет писать решения на TypeScript, тестировать их и собирать готовый к запуску на платформе JS-файл, предоставляя абстракцию над операциями чтения и записи данных.
+
+![Пример структурного компонента для решения задачи](yandex-contest-typescript-runner.png)
 
 ## Структура файла решения (`solution`)
 
