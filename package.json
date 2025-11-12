@@ -4,7 +4,7 @@
   "description": "Приближает DX использования Яндекс.Контеста к DX'у LeetCode'a",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node build.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/rikkaar/yandex-contest-typescript-runner#readme",
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "esbuild": "^0.27.0",
     "typescript": "^5.9.3"
   }
 }

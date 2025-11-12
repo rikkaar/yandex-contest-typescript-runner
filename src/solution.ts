@@ -3,7 +3,7 @@ import type { Solution } from "./io";
 type Input = [number, number];
 type Output = number;
 
-const solution: Solution<Input, Output> = {
+export const solution: Solution<Input, Output> = {
   solution: ([a, b]) => {
     return a + b;
   },
@@ -12,5 +12,3 @@ const solution: Solution<Input, Output> = {
   },
   transformOutput: String,
 };
-
-export default solution;

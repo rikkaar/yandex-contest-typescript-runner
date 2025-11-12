@@ -1,5 +1,5 @@
-import * as fs from "fs/promises";
-import * as readline from "readline";
+const fs = require("fs/promises");
+const readline = require("readline");
 
 type FileOutputParams = {
   type: "file";
@@ -40,13 +40,13 @@ export type Solution<I, O> = {
   transformOutput: TransformOutput<O>;
 };
 
-export const readInputFromFile = async (path: string): Promise<Input> => {
-  const rawInput = await fs.readFile(path, { encoding: "utf8" });
+const readInputFromFile = async (inputPath: string): Promise<Input> => {
+  const rawInput = await fs.readFile(inputPath, { encoding: "utf8" });
 
   return rawInput.split(/\r?\n/);
 };
 
-export const readInputFromStdin = async (): Promise<Input> => {
+const readInputFromStdin = async (): Promise<Input> => {
   const rl = readline.createInterface({
     input: process.stdin,
   });
@@ -61,23 +61,23 @@ export const readInputFromStdin = async (): Promise<Input> => {
   return lines;
 };
 
-export const writeOutputToFile = async (
-  path: string,
+const writeOutputToFile = async (
+  outputPath: string,
   output: Output
 ): Promise<void> => {
-  await fs.writeFile(path, output);
+  await fs.writeFile(outputPath, output);
 };
 
-export const writeOutputToStdout = (output: Output): void => {
+const writeOutputToStdout = (output: Output): void => {
   console.log(output);
 };
 
 export const runner = async (
-  solution: Solution<unknown, unknown>,
+  solution: Solution<any, any>,
   /** @default stdin */
-  inputSource: InputParams = { type: "stdin" },
+  inputSource: InputParams,
   /** @default stdout */
-  outputTarget: OutputParams = { type: "stdout" }
+  outputTarget: OutputParams
 ) => {
   let inputLines: Input;
 

@@ -19,6 +19,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "src/extract-solution.js"],
   "exclude": ["node_modules", "dist"]
 }
