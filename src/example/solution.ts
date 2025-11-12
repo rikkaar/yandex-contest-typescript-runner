@@ -1,14 +1,15 @@
 import type { Solution } from "../../io/types";
 
-type Input = [number, number];
-type Output = number;
+type I = [number, number];
+type O = number;
 
-export const solution: Solution<Input, Output> = {
+export const solution: Solution<I, O> = {
   solution: ([a, b]) => {
     return a + b;
   },
-  transformInput: (input) => {
-    return [Number(input[0]), Number(input[1])];
+  transformInput: ([input]) => {
+    const [a, b] = input.split(" ");
+    return [Number(a), Number(b)];
   },
   transformOutput: String,
 };

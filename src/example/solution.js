@@ -22,8 +22,9 @@ var solution = {
   solution: ([a, b]) => {
     return a + b;
   },
-  transformInput: (input) => {
-    return [Number(input[0]), Number(input[1])];
+  transformInput: ([input]) => {
+    const [a, b] = input.split(" ");
+    return [Number(a), Number(b)];
   },
   transformOutput: String
 };
