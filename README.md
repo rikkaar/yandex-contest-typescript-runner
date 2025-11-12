@@ -50,7 +50,7 @@ npm run solution:build <solutionPath>
 src/
 └─ example/
    ├─ solution.ts               Решение задачи
-   ├─ solution.test.ts Ее       Тест задачи
+   ├─ solution.test.ts          Тест задачи
 ```
 
 Команды для запуска сборки и тестирования
