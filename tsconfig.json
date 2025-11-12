@@ -3,6 +3,8 @@
     "target": "esnext",
     "lib": ["esnext"],
     "types": ["node"],
+    "module": "esnext",
+    "moduleResolution": "node",
 
     "sourceMap": true,
     "declaration": true,

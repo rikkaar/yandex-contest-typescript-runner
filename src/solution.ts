@@ -1,4 +1,4 @@
-import type { Solution } from "./io";
+import type { Solution } from "../io/types";
 
 type Input = [number, number];
 type Output = number;
