@@ -1,6 +1,6 @@
 {
   "name": "yandex-contest-typescript-runner",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Приближает DX использования Яндекс.Контеста к DX'у LeetCode'a",
   "main": "index.js",
   "type": "module",
