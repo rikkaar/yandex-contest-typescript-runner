@@ -59,7 +59,7 @@ describe("Solution", () => {
 ## Сборка
 
 ```bash
-npm run solution:build <solutionPath>
+npm run solution:build -- <solutionPath>
 ```
 
 | Параметр                   | Описание                                 | Значение по умолчанию     |
@@ -101,6 +101,6 @@ src/
 Команды для запуска сборки и тестирования
 
 ```bash
-npm run solution:build ./src/example/solution.ts
+npm run solution:build -- ./src/example/solution.ts
 npm run solution:test ./src/example/solution.ts
 ```
