@@ -1,9 +1,9 @@
 import type { Solution } from "../../io/types";
 
-type I = any[];
-type O = any;
+type Input = [any];
+type Output = any;
 
-export const solution: Solution<I, O> = {
+export const solution: Solution<Input, Output> = {
   solution: ([]) => {
     return undefined;
   },
