@@ -1,4 +1,4 @@
-export type Input = [string, ...string[]];
+export type Input = string[];
 
 export type Output = string;
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
 import * as path from "path";
 import * as fs from "fs/promises";
@@ -18,19 +18,12 @@ if (!taskName) {
     await fs.access(taskDir);
     console.error(`Директория уже существует: ${taskDir}`);
     process.exit(1);
-  } catch {
-    await fs.mkdir(taskDir, { recursive: true });
-  }
+  } catch {}
 
-  const templateDir = path.join("template");
+  await fs.mkdir(taskDir, { recursive: true });
 
-  const filesToCopy = ["solution.ts", "solution.test.ts"];
+  const templateDir = path.join("_template");
+  await fs.cp(templateDir, taskDir, { recursive: true });
 
-  for (const file of filesToCopy) {
-    const srcFile = path.join(templateDir, file);
-    const destFile = path.join(taskDir, file);
-    await fs.copyFile(srcFile, destFile);
-  }
-
-  console.log(`Файлы созданы в ${taskDir}`);
+  console.log(`Содержимое директории ${templateDir} скопировано в ${taskDir}`);
 })();
