@@ -1,12 +1,12 @@
-export type Input = string[];
+export type RawInput = string[];
 
-export type Output = string;
+export type RawOutput = string;
 
 type SolutionFunction<I, O> = (args: I) => O;
 
-type TransformInput<I> = (input: Input) => I;
+type TransformInput<I> = (rawInput: RawInput) => I;
 
-type TransformOutput<O> = (output: O) => Output;
+type TransformOutput<O> = (output: O) => RawOutput;
 
 export type Solution<I, O> = {
   solution: SolutionFunction<I, O>;

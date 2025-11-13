@@ -1,12 +1,12 @@
-import type { Input, Output, Solution } from "./types";
+import type { RawInput, RawOutput, Solution } from "./types";
 
 const readline = require("readline");
 
-const readInputFromStdin = async (): Promise<Input> => {
+const readInputFromStdin = async (): Promise<RawInput> => {
   const rl = readline.createInterface({
     input: process.stdin,
   });
-  const lines: Input = [];
+  const lines: RawInput = [];
 
   for await (const line of rl) {
     lines.push(line);
@@ -17,7 +17,7 @@ const readInputFromStdin = async (): Promise<Input> => {
   return lines;
 };
 
-const writeOutputToStdout = (output: Output): void => {
+const writeOutputToStdout = (output: RawOutput): void => {
   console.log(output);
 };
 

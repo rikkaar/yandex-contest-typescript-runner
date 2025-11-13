@@ -1,8 +1,8 @@
-import type { Input, Output, Solution } from "./types";
+import type { RawInput, RawOutput, Solution } from "./types";
 
 const fs = require("fs/promises");
 
-const readInputFromFile = async (inputPath: string): Promise<Input> => {
+const readInputFromFile = async (inputPath: string): Promise<RawInput> => {
   const rawInput = await fs.readFile(inputPath, { encoding: "utf8" });
 
   return rawInput.split(/\r?\n/);
@@ -10,7 +10,7 @@ const readInputFromFile = async (inputPath: string): Promise<Input> => {
 
 const writeOutputToFile = async (
   outputPath: string,
-  output: Output
+  output: RawOutput
 ): Promise<void> => {
   await fs.writeFile(outputPath, output);
 };

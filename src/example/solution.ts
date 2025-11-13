@@ -1,12 +1,12 @@
 import type { Solution } from "../../io/types";
 
 // Входные параметры произвольной JS структуры
-type I = [number, number];
+type Input = [number, number];
 
 // Выходные параметры произвольной JS структуры
-type O = number;
+type Output = number;
 
-export const solution: Solution<I, O> = {
+export const solution: Solution<Input, Output> = {
   // Основная функция решения
   solution: ([a, b]) => {
     return a + b;
@@ -18,6 +18,6 @@ export const solution: Solution<I, O> = {
     return [Number(a), Number(b)];
   },
 
-  // Преобразование выходной JS Структуры в текст как его ожидает Yandex.Contest
+  // Преобразование выходной JS Структуры в текст как его ожидает Яндекс.Контест
   transformOutput: String,
 };
