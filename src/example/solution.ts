@@ -14,7 +14,7 @@ export const solution: Solution<Input, Output> = {
 
   // Подготовка параметров из массива строк в иные JS структуры
   transformInput: ([input]) => {
-    const [a, b] = input!.split(" ");
+    const [a, b] = input.split(" ");
     return [Number(a), Number(b)];
   },
 
