@@ -2,14 +2,15 @@
 
 import * as path from "path";
 import * as fs from "fs/promises";
+import { Command } from "commander";
 
-const args = process.argv.slice(2);
-const taskName = args[0];
+const program = new Command();
 
-if (!taskName) {
-  console.error("Не указано имя задачи");
-  process.exit(1);
-}
+program
+  .argument("<taskName>", "Название директории для задачи")
+  .parse(process.argv);
+
+const [taskName] = program.args;
 
 (async () => {
   const taskDir = path.join("src", taskName);

@@ -17,7 +17,11 @@ export const resolveTargetFileAbsPath = async (
     targetPath = path.resolve(arg);
   }
 
-  await fs.access(targetPath);
+  try {
+    await fs.access(targetPath);
+    console.error(`Файл ${targetPath} не найден`);
+    process.exit(1);
+  } catch {}
 
   return targetPath;
 };
