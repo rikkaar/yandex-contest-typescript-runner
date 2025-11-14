@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import * as path from "path";
 import { exec } from "child_process";
 import { Command } from "commander";
 import { resolveTargetFileAbsPath } from "./utils.ts";
