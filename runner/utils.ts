@@ -1,32 +1,34 @@
 import * as fs from "fs/promises";
 import * as path from "path";
 
-export const resolveSolutionAbsPath = async (solutionPath?: string) => {
-  if (!solutionPath) throw new Error("Не указан путь до файла с решением");
-  const solutionAbsPath = path.resolve(solutionPath);
-  try {
-    await fs.access(solutionAbsPath);
-  } catch {
-    throw new Error(`Файл решения не найден: ${solutionAbsPath}`);
+const isTaskId = (arg: string): boolean => {
+  return !arg.includes("/") && !arg.includes(".");
+};
+
+export const resolveTargetFileAbsPath = async (
+  arg: string,
+  fileName: string
+): Promise<string> => {
+  let targetPath: string;
+
+  if (isTaskId(arg)) {
+    targetPath = path.resolve("src", arg, fileName);
+  } else {
+    targetPath = path.resolve(arg);
   }
-  return solutionAbsPath;
+
+  await fs.access(targetPath);
+
+  return targetPath;
 };
 
-export const getSolutionName = (solutionPath: string) => {
-  return path.basename(solutionPath, ".ts");
-};
-
-export const getRunnerRelPath = (
+export const resolveRunnerRelPath = (
   solutionDir: string,
   runnerType: "file" | "std"
-) => {
+): string => {
   const runnerAbsPath = path.resolve(
     "io",
     runnerType === "file" ? "file-io" : "std-io"
   );
-  let runnerRelPath = path
-    .relative(solutionDir, runnerAbsPath)
-    .replace(/\\/g, "/");
-  if (!runnerRelPath.startsWith(".")) runnerRelPath = "./" + runnerRelPath;
-  return runnerRelPath;
+  return path.relative(solutionDir, runnerAbsPath);
 };

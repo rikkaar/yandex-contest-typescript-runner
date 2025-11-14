@@ -3,21 +3,21 @@
 import * as path from "path";
 import { exec } from "child_process";
 import { Command } from "commander";
-import { resolveSolutionAbsPath, getSolutionName } from "./utils.ts";
+import { resolveTargetFileAbsPath } from "./utils.ts";
 
 const program = new Command();
 
 program
-  .argument("[solutionPath]", "Путь до файла с решением")
+  .argument(
+    "<testPath>",
+    "Путь до файла с тестами или taskId (например: example или ./src/example/solution.test.ts)"
+  )
   .parse(process.argv);
 
-const [solutionArg] = program.args;
+const [testArg] = program.args;
 
 (async () => {
-  const solutionAbsPath = await resolveSolutionAbsPath(solutionArg);
-  const solutionDir = path.dirname(solutionAbsPath);
-  const solutionName = getSolutionName(solutionAbsPath);
-  const testFile = path.join(solutionDir, solutionName + ".test.ts");
+  const testFile = await resolveTargetFileAbsPath(testArg, "solution.test.ts");
 
   exec(`npx jest "${testFile}" --colors`, (err, stdout, stderr) => {
     console.log(stdout);

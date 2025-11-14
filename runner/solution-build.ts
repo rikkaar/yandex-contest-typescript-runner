@@ -4,16 +4,15 @@ import * as path from "path";
 import * as fs from "fs/promises";
 import * as esbuild from "esbuild";
 import { Command } from "commander";
-import {
-  resolveSolutionAbsPath,
-  getSolutionName,
-  getRunnerRelPath,
-} from "./utils.ts";
+import { resolveTargetFileAbsPath, resolveRunnerRelPath } from "./utils.ts";
 
 const program = new Command();
 
 program
-  .argument("[solutionPath]", "Путь до файла с решением")
+  .argument(
+    "<solutionPath>",
+    "Путь до файла с решением или taskId (например: example или ./src/example/solution.ts)"
+  )
   .option("-r, --runner <type>", "Тип раннера (file|std)", "file")
   .option("-i, --input <path>", "Путь до входного файла (fileRunner)")
   .option("-o, --output <path>", "Путь до выходного файла (fileRunner)")
@@ -24,16 +23,19 @@ const options = program.opts();
 const [solutionArg] = program.args;
 
 (async () => {
-  const solutionAbsPath = await resolveSolutionAbsPath(solutionArg);
+  const solutionAbsPath = await resolveTargetFileAbsPath(
+    solutionArg,
+    "solution.ts"
+  );
   const solutionDir = path.dirname(solutionAbsPath);
-  const solutionName = getSolutionName(solutionAbsPath);
+  const solutionName = path.basename(solutionAbsPath, ".ts");
 
   if (!["file", "std"].includes(options.runner)) {
     throw new Error(`Неверный тип раннера. Допустимые значения: "file", "std"`);
   }
 
   const runnerType = options.runner === "std" ? "stdRunner" : "fileRunner";
-  const runnerRelPath = getRunnerRelPath(solutionDir, options.runner);
+  const runnerRelPath = resolveRunnerRelPath(solutionDir, options.runner);
 
   const tempTS = `
 import { ${runnerType} } from "${runnerRelPath}";
