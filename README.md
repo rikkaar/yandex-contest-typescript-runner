@@ -66,7 +66,7 @@ import { runSolution } from "../../io/utils.ts";
 import { getPlainTextFromFile } from "../../runner/utils.ts";
 
 describe("Solution", () => {
-  it("Run from file", () => {
+  it("Run from file", async () => {
     const plainInput = await getPlainTextFromFile("input.txt", __dirname);
     const expectedOutput = await getPlainTextFromFile("output.txt", __dirname);
 
