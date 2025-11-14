@@ -3,9 +3,9 @@ import type { RawInput, RawOutput, Solution } from "./types";
 const fs = require("fs/promises");
 
 const readInputFromFile = async (inputPath: string): Promise<RawInput> => {
-  const rawInput = await fs.readFile(inputPath, { encoding: "utf8" });
+  const plainText = await fs.readFile(inputPath, { encoding: "utf8" });
 
-  return rawInput.split(/\r?\n/);
+  return plainText.split(/\r?\n/);
 };
 
 const writeOutputToFile = async (

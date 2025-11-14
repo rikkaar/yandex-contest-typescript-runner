@@ -1,5 +1,5 @@
-import * as fs from "fs/promises";
 import * as path from "path";
+import * as fs from "fs/promises";
 
 const isTaskId = (arg: string): boolean => {
   return !arg.includes("/") && !arg.includes(".");
@@ -17,12 +17,6 @@ export const resolveTargetFileAbsPath = async (
     targetPath = path.resolve(arg);
   }
 
-  try {
-    await fs.access(targetPath);
-    console.error(`Файл ${targetPath} не найден`);
-    process.exit(1);
-  } catch {}
-
   return targetPath;
 };
 
@@ -35,4 +29,12 @@ export const resolveRunnerRelPath = (
     runnerType === "file" ? "file-io" : "std-io"
   );
   return path.relative(solutionDir, runnerAbsPath);
+};
+
+export const getPlainTextFromFile = async (
+  filePath: string,
+  baseDir: string
+): Promise<string> => {
+  const absPath = path.resolve(baseDir, filePath);
+  return fs.readFile(absPath, { encoding: "utf8" });
 };
