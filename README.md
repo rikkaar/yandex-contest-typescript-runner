@@ -28,26 +28,47 @@ npm run solution:test <testPath>
 | ---------- | --------------------------------------------------------------------------------------------- | ------------------------- |
 | `testPath` | Путь до файла с тестами или taskId (например: `example` или `./src/example/solution.test.ts`) | **обязательный аргумент** |
 
-# Использование готовых тесткейсов
+### Использование готовых тесткейсов
 
 Также есть возможность протестировать решение полным циклом, начиная от парсинга данных, заканчивая постобработкой в нужный по требованиям задачи формат, проходя следующую цепочку преобразований: `plainInput->rawInput->input->output->rawOutput`
 
 ![Копирование ввода тесткейса](./assets/raw-testcases-feature.png)
 
-Для этого из интерфейса Яндекс.Контеста можно скопировать ввод/вывод текстейса и поместить в обратные кавычки (\`\`), соблюдая при этом нулевую табуляцию - без этого работать не будет.
+#### Тестирование через std
 
-Далее в `solution.test.ts` с помощью утилиты `runSolution` можно сделать запуск полного цикла
+Скопированный из Яндекс.Контеста ввод/вывод необходимо поместить в обратные кавычки (\`\`), соблюдая при этом нулевую табуляцию - без этого работать не будет.
 
 ```ts
 import { solution } from "./solution.ts";
 import { runSolution } from "../../io/utils.ts";
 
 describe("Solution", () => {
-  it("Case 1", () => {
+  it("Run from std", () => {
     const plainInput = `3
 1 2 3
 4 5 6`;
     const expectedOutput = `1 4 2 5 3 6`;
+
+    const output = runSolution(solution, plainInput);
+
+    expect(output).toBe(expectedOutput);
+  });
+});
+```
+
+#### Тестирование через файлы input.txt/output.txt
+
+Скопированный из Яндекс.Контеста ввод/вывод необходимо поместить в два произвольных файла внутри директории, где находится тест, по умолчанию - это файлы `input.txt` и `output.txt`
+
+```ts
+import { solution } from "./solution.ts";
+import { runSolution } from "../../io/utils.ts";
+import { getPlainTextFromFile } from "../../runner/utils.ts";
+
+describe("Solution", () => {
+  it("Run from file", () => {
+    const plainInput = await getPlainTextFromFile("input.txt", __dirname);
+    const expectedOutput = await getPlainTextFromFile("output.txt", __dirname);
 
     const output = runSolution(solution, plainInput);
 
