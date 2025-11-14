@@ -1,12 +1,20 @@
-import { solution } from "./solution.ts";
 import { runSolution } from "../../io/utils.ts";
+import { getPlainTextFromFile } from "../../runner/utils.ts";
+import { solution } from "./solution.ts";
 
 describe("Solution", () => {
-  it("Case 1", () => {
-    const plainInput = `3
-1 2 3
-4 5 6`;
-    const expectedOutput = `1 4 2 5 3 6`;
+  it("Std. Case 1", () => {
+    const plainInput = ``;
+    const expectedOutput = ``;
+
+    const output = runSolution(solution, plainInput);
+
+    expect(output).toBe(expectedOutput);
+  });
+
+  it("File. Case 1", async () => {
+    const plainInput = await getPlainTextFromFile("input.txt", __dirname);
+    const expectedOutput = await getPlainTextFromFile("output.txt", __dirname);
 
     const output = runSolution(solution, plainInput);
 
