@@ -28,9 +28,6 @@
     "ts-jest": "^29.1.0",
     "typescript": "^5.9.3"
   },
-  "jest": {
-    "preset": "ts-jest"
-  },
   "dependencies": {
     "commander": "^14.0.2"
   }
