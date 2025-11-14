@@ -5,10 +5,10 @@ type Output = any;
 
 export const solution: Solution<Input, Output> = {
   solution: ([]) => {
-    return undefined;
+    return "";
   },
   transformInput: ([]) => {
-    return [];
+    return [undefined];
   },
   transformOutput: String,
 };
