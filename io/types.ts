@@ -2,7 +2,7 @@ export type RawInput = string[];
 
 export type RawOutput = string;
 
-type SolutionFunction<I, O> = (args: I) => O;
+export type SolutionFunction<I, O> = (args: I) => O;
 
 type TransformInput<I> = (rawInput: RawInput) => I;
 

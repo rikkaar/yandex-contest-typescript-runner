@@ -1,4 +1,4 @@
-import type { RawInput, RawOutput, Solution } from "./types.ts";
+import type { RawInput, RawOutput, Solution, SolutionFunction } from "./types.ts";
 
 const transformPlainTextToRawInput = (plainText: string): RawInput => {
   return plainText.split(/\r?\n/);
@@ -14,3 +14,13 @@ export const runSolution = (
   const output = solution.transformOutput(result);
   return output;
 };
+
+export class Node {
+  value: string | null;
+  next: Node | null;
+
+  constructor(value: string | null = null, next: Node | null = null) {
+    this.value = value;
+    this.next = next ?? null;
+  }
+}

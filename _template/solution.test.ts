@@ -12,7 +12,7 @@ describe("Solution", () => {
     expect(output).toBe(expectedOutput);
   });
 
-  it("File. Case 1", async () => {
+  it("File. Case 2", async () => {
     const plainInput = await getPlainTextFromFile("input.txt", __dirname);
     const expectedOutput = await getPlainTextFromFile("output.txt", __dirname);
 

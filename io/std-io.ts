@@ -14,7 +14,7 @@ const readInputFromStdin = async (): Promise<RawInput> => {
 
   rl.close();
 
-  return lines;
+  return lines.filter(Boolean);
 };
 
 const writeOutputToStdout = (output: RawOutput): void => {

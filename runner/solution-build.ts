@@ -13,7 +13,7 @@ program
     "<solutionPath>",
     "Путь до файла с решением или taskId (например: example или ./src/example/solution.ts)"
   )
-  .option("-r, --runner <type>", "Тип раннера (file|std)", "file")
+  .option("-r, --runner <type>", "Тип раннера (file|std|make)", "file")
   .option("-i, --input <path>", "Путь до входного файла (fileRunner)")
   .option("-o, --output <path>", "Путь до выходного файла (fileRunner)")
   .option("-O, --outfile <filename>", "Имя итогового JS-файла")
@@ -30,27 +30,41 @@ const [solutionArg] = program.args;
   const solutionDir = path.dirname(solutionAbsPath);
   const solutionName = path.basename(solutionAbsPath, ".ts");
 
-  if (!["file", "std"].includes(options.runner)) {
-    throw new Error(`Неверный тип раннера. Допустимые значения: "file", "std"`);
+  if (!["file", "std", "make"].includes(options.runner)) {
+    throw new Error(
+      `Неверный тип раннера. Допустимые значения: "file", "std", "make"`
+    );
   }
 
-  const runnerType = options.runner === "std" ? "stdRunner" : "fileRunner";
-  const runnerRelPath = resolveRunnerRelPath(solutionDir, options.runner);
+  let tempTS: string;
 
-  const tempTS = `
+  if (options.runner === "make") {
+    tempTS = `
+import { solution as _solution } from "./${solutionName}";
+
+globalThis.solution = function(...args) {
+  return _solution(args);
+};
+`;
+  } else {
+    const runnerType = options.runner === "std" ? "stdRunner" : "fileRunner";
+    const runnerRelPath = resolveRunnerRelPath(solutionDir, options.runner);
+
+    tempTS = `
 import { ${runnerType} } from "${runnerRelPath}";
 import { solution } from "./${solutionName}";
 
 (async () => {
   await ${runnerType}(solution${
-    runnerType === "fileRunner"
-      ? `, "${options.input ?? "input.txt"}", "${
-          options.output ?? "output.txt"
-        }"`
-      : ""
-  });
+      runnerType === "fileRunner"
+        ? `, "${options.input ?? "input.txt"}", "${
+            options.output ?? "output.txt"
+          }"`
+        : ""
+    });
 })();
 `;
+  }
 
   const outfileName = options.outfile ?? solutionName + ".js";
   const outfilePath = path.join(solutionDir, outfileName);
@@ -62,6 +76,7 @@ import { solution } from "./${solutionName}";
     bundle: true,
     platform: "node",
     target: "esnext",
+    minifyIdentifiers: false,
     outfile: outfilePath,
   });
   await fs.unlink(tempTSPath);

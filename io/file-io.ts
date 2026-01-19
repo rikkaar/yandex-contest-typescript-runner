@@ -5,7 +5,7 @@ const fs = require("fs/promises");
 const readInputFromFile = async (inputPath: string): Promise<RawInput> => {
   const plainText = await fs.readFile(inputPath, { encoding: "utf8" });
 
-  return plainText.split(/\r?\n/);
+  return plainText.split(/\r?\n/).filter(Boolean);
 };
 
 const writeOutputToFile = async (

@@ -8,9 +8,11 @@ const program = new Command();
 
 program
   .argument("<taskName>", "Название директории для задачи")
+  .option("-t, --type <type>", "Тип шаблона (default|make)", "default")
   .parse(process.argv);
 
 const [taskName] = program.args;
+const options = program.opts();
 
 (async () => {
   const taskDir = path.join("src", taskName);
@@ -23,7 +25,8 @@ const [taskName] = program.args;
 
   await fs.mkdir(taskDir, { recursive: true });
 
-  const templateDir = path.join("_template");
+  const templateType = options.type === "make" ? "_template-make" : "_template";
+  const templateDir = path.join(templateType);
   await fs.cp(templateDir, taskDir, { recursive: true });
 
   console.log(`Содержимое директории ${templateDir} скопировано в ${taskDir}`);
